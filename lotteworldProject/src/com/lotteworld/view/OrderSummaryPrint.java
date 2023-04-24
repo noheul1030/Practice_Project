@@ -1,6 +1,9 @@
 package com.lotteworld.view;
 
+import java.text.MessageFormat;
+
 import com.lotteworld.dto.TicketSummaryDto;
+import com.lotteworld.util.MsgUtil;
 import com.lotteworld.util.StringUtil;
 
 public class OrderSummaryPrint {
@@ -11,7 +14,9 @@ public class OrderSummaryPrint {
     public static void writeHeader() {
         System.out.println("");
         System.out.println("================================= LOTTE WORLD ==============");
-        System.out.printf("%5s%9s%9s%9s%14s\n", "권종", "그룹", "수량", "가격", "우대사항");
+        System.out.printf("%5s%9s%9s%9s%14s\n", MsgUtil.getMsg("OrderSummaryPrint.type"),
+                MsgUtil.getMsg("OrderSummaryPrint.group"), MsgUtil.getMsg("OrderSummaryPrint.count"),
+                MsgUtil.getMsg("OrderSummaryPrint.price"), MsgUtil.getMsg("OrderSummaryPrint.preferentialTreatment"));
         System.out.println("============================================================");
     }
 
@@ -24,7 +29,8 @@ public class OrderSummaryPrint {
         System.out.printf("%5s", dto.getTicketType());
         System.out.printf("%9s", dto.getAgeGroup());
         System.out.printf("%10s", "X " + dto.getBuyCount());
-        System.out.printf("%12s원", StringUtil.numToString(dto.getTotalPrice()));
+        System.out.printf("%12s" + MsgUtil.getMsg("OrderSummaryPrint.won"),
+                StringUtil.numToString(dto.getTotalPrice()));
         System.out.printf("%4s%8s", " ", "* " + dto.getPreferentialItem());
         System.out.println();
     }
@@ -37,6 +43,7 @@ public class OrderSummaryPrint {
     public static void writeFooter(int totalPrice) {
         System.out.println("============================================================");
         System.out.println("");
-        System.out.printf("***** 입장료 총액은 %s원 입니다. *****", StringUtil.numToString(totalPrice));
+        System.out.println(MessageFormat.format(MsgUtil.getMsg("OrderSummaryPrint.totalPrice"),
+                StringUtil.numToString(totalPrice)));
     }
 }
