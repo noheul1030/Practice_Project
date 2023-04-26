@@ -1,15 +1,20 @@
 package xml.kopo11;
 
-import java.io.*;
 //import java.io.File;
 //import java.io.IOException;
+import java.io.File;
+import java.io.IOException;
 
-import javax.xml.parsers.*;
 //import javax.xml.parsers.DocumentBuilder;
 //import javax.xml.parsers.DocumentBuilderFactory;
 //import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 //import org.w3c.dom.Document;
 //import org.w3c.dom.Element;
 //import org.w3c.dom.NodeList;
@@ -17,34 +22,35 @@ import org.xml.sax.SAXException;
 
 public class XMLMain {
 
-	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
-		// ÆÄ¾ÅÀ» À§ÇÑ ÁØºñ
-		DocumentBuilder kopo11_docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		
-		// xml ÆÄÀÏÀ» Ã³¸® PC¾È¿¡ ÀÖ¾î¼­ ÀüÃ¼°æ·Î¸¦ ÁöÁ¤, xml ÆÄ½ÌÃ³¸® ½ÃÀÛ
-		Document kopo11_doc = kopo11_docBuilder
-				.parse(new File("C:\\Users\\³ëÀ»\\Documents\\GitHub\\KOPO-JAVA2\\XMLProject\\testdata.xml"));
+    public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException {
+        // íŒŒì”½ì„ ìœ„í•œ ì¤€ë¹„
+        DocumentBuilder kopo11_docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 
-		// root ÅÂ±×¸¦ °¡Áö°í ¿À±âµµ ÇÏÁö¸¸ Áö±İÀº ¾²ÀÌ´Â °÷ÀÌ ¾øÀ½
-		Element kopo11_root = kopo11_doc.getDocumentElement();
+        // xml íŒŒì¼ì„ ì²˜ë¦¬ PCì•ˆì— ìˆì–´ì„œ ì „ì²´ê²½ë¡œë¥¼ ì§€ì •, xml íŒŒì‹±ì²˜ë¦¬ ì‹œì‘
+        Document kopo11_doc = kopo11_docBuilder
+                .parse(new File("C:\\Users\\ë…¸ì„\\Documents\\GitHub\\KOPO-JAVA2\\XMLProject\\testdata.xml"));
 
-		// name, studentid, kor, eng, mat NodeList¿¡ °¢°¢ÀÇ °ª ´ëÀÔ
-		NodeList kopo11_tag_name = kopo11_doc.getElementsByTagName("name");
-		NodeList kopo11_tag_studentid = kopo11_doc.getElementsByTagName("studentid");
-		NodeList kopo11_tag_kor = kopo11_doc.getElementsByTagName("kor");
-		NodeList kopo11_tag_eng = kopo11_doc.getElementsByTagName("eng");
-		NodeList kopo11_tag_mat = kopo11_doc.getElementsByTagName("mat");
+        // root íƒœê·¸ë¥¼ ê°€ì§€ê³  ì˜¤ê¸°ë„ í•˜ì§€ë§Œ ì§€ê¸ˆì€ ì“°ì´ëŠ” ê³³ì´ ì—†ìŒ
+        Element kopo11_root = kopo11_doc.getDocumentElement();
 
-		System.out.printf("*********************************\n"); // ******* Ãâ·Â °³Çà
-		for (int kopo11_i = 0; kopo11_i < kopo11_tag_name.getLength(); kopo11_i++) { // kopo11_tag_nameÀÇ ±æÀÌ¸¸Å­ µµ´Â ¹İº¹¹®
-			System.out.printf("ÀÌ¸§ : %s\n", kopo11_tag_name.item(kopo11_i).getFirstChild().getNodeValue());
-			System.out.printf("ÇĞ¹ø : %s\n", kopo11_tag_studentid.item(kopo11_i).getFirstChild().getNodeValue()); // String ÁÖÀÇ
-			System.out.printf("±¹¾î : %s\n", kopo11_tag_kor.item(kopo11_i).getFirstChild().getNodeValue()); // String ÁÖÀÇ
-			System.out.printf("¿µ¾î : %s\n", kopo11_tag_eng.item(kopo11_i).getFirstChild().getNodeValue()); // String ÁÖÀÇ
-			System.out.printf("¼öÇĞ : %s\n", kopo11_tag_mat.item(kopo11_i).getFirstChild().getNodeValue()); // String ÁÖÀÇ
-			System.out.printf("*********************************\n"); // ******* Ãâ·Â °³Çà
-		}
+        // name, studentid, kor, eng, mat NodeListì— ê°ê°ì˜ ê°’ ëŒ€ì…
+        NodeList kopo11_tag_name = kopo11_doc.getElementsByTagName("name");
+        NodeList kopo11_tag_studentid = kopo11_doc.getElementsByTagName("studentid");
+        NodeList kopo11_tag_kor = kopo11_doc.getElementsByTagName("kor");
+        NodeList kopo11_tag_eng = kopo11_doc.getElementsByTagName("eng");
+        NodeList kopo11_tag_mat = kopo11_doc.getElementsByTagName("mat");
 
-	}
+        System.out.printf("*********************************\n"); // ******* ì¶œë ¥ ê°œí–‰
+        for (int kopo11_i = 0; kopo11_i < kopo11_tag_name.getLength(); kopo11_i++) { // kopo11_tag_nameì˜ ê¸¸ì´ë§Œí¼ ë„ëŠ” ë°˜ë³µë¬¸
+            System.out.printf("ì´ë¦„ : %s\n", kopo11_tag_name.item(kopo11_i).getFirstChild().getNodeValue());
+            System.out.printf("í•™ë²ˆ : %s\n", kopo11_tag_studentid.item(kopo11_i).getFirstChild().getNodeValue()); // String
+                                                                                                                // ì£¼ì˜
+            System.out.printf("êµ­ì–´ : %s\n", kopo11_tag_kor.item(kopo11_i).getFirstChild().getNodeValue()); // String ì£¼ì˜
+            System.out.printf("ì˜ì–´ : %s\n", kopo11_tag_eng.item(kopo11_i).getFirstChild().getNodeValue()); // String ì£¼ì˜
+            System.out.printf("ìˆ˜í•™ : %s\n", kopo11_tag_mat.item(kopo11_i).getFirstChild().getNodeValue()); // String ì£¼ì˜
+            System.out.printf("*********************************\n"); // ******* ì¶œë ¥ ê°œí–‰
+        }
+
+    }
 
 }
