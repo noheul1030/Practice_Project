@@ -9,8 +9,43 @@ public class LocaleTest {
     public static final String LANGUAGE_KO = "ko";
     public static final String LANGUAGE_EN = "en";
 
-    public static void main(String[] args) {
-        new LocaleTest().execute();
+    public static void main(String[] args) throws IOException {
+        LocaleTest test = new LocaleTest();
+        test.execute2();
+    }
+
+    private void execute2() {
+        System.out.println(Locale.getDefault());
+        Locale.setDefault(Locale.KOREAN);
+        if (Locale.getDefault() == Locale.KOREAN) {
+            System.out.println("111 Locale.KOREAN");
+        } else {
+            System.out.println("111 Locale.KOREAN NOT!!!!");
+        }
+
+        if (Locale.getDefault().equals(Locale.KOREAN)) {
+            System.out.println("222 Locale.KOREAN");
+        } else {
+            System.out.println("222 Locale.KOREAN NOT!!!!");
+        }
+
+        Locale.setDefault(Locale.US);
+        if (Locale.getDefault() == Locale.US) {
+            System.out.println("111 Locale.US");
+        } else {
+            System.out.println("111 Locale.US NOT!!!!");
+        }
+
+        if (Locale.getDefault().equals(Locale.US)) {
+            System.out.println("222 Locale.US");
+        } else {
+            System.out.println("222 Locale.US NOT!!!!");
+        }
+
+//        Locale.setDefault(Locale.US);
+//        System.out.println(Locale.getDefault());
+//        System.out.println(Locale.getDefault().getLanguage());
+//        System.out.println(Locale.getDefault().getCountry());
     }
 
     private void execute() throws IOException {

@@ -56,8 +56,11 @@ public class JSONMain {
 //                    "C:\\Users\\changyoung.shin\\Desktop\\폴리텍 자료\\Practice_Project\\XMLProject\\resource\\jsontest.json"),
 //                    "UTF-8"));
             // FileWriter는 다른곳에서 파일을 read할 때 한글이 깨지는 현상이 발생함.
-            FileWriter kopo11_file = new FileWriter(
-                    "C:\\Users\\changyoung.shin\\Desktop\\폴리텍 자료\\Practice_Project\\XMLProject\\resource\\jsontest.json");
+            // 절대경로
+//            FileWriter kopo11_file = new FileWriter(
+//                    "C:\\Users\\changyoung.shin\\Desktop\\폴리텍 자료\\Practice_Project\\XMLProject\\resource\\jsontest.json");
+            // 상대경로
+            FileWriter kopo11_file = new FileWriter("resource/jsontest.json");
             kopo11_file.write(kopo11_datasArray.toJSONString()); // kopo11_file에 kopo11_datasArray.toJSONString 값 입력
             kopo11_file.flush(); // 현재 버퍼에 저장되어 있는 내용을 클라이언트로 전송하고 버퍼를 비운다.
             kopo11_file.close(); // BufferedWriter 종료
